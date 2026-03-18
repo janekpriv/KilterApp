@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kilter Board — Route Builder</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Kilter <span>Board</span></h1>
+    <div class="grade-badge" id="gradeBadge">
+      <span class="label">grade</span><span class="value" id="gradeValue">—</span>
+    </div>
+  </header>
+
+  <div class="main-layout">
+
+    <div class="wall-wrapper">
+      <canvas id="wallCanvas"></canvas>
+      <div class="wall-overlay">185 × 173</div>
+    </div>
+
+    <aside class="sidebar">
+
+      <!-- Tool selector -->
+      <div class="panel">
+        <div class="panel-title">Narzędzie</div>
+
+        <div class="legend-item active-tool" data-tool="start" onclick="setTool('start')">
+          <div class="dot dot--start"></div>
+          <span class="legend-label">Start</span>
+          <span class="legend-key">1</span>
+        </div>
+
+        <div class="legend-item" data-tool="foot" onclick="setTool('foot')">
+          <div class="dot dot--foot"></div>
+          <span class="legend-label">Noga</span>
+          <span class="legend-key">2</span>
+        </div>
+
+        <div class="legend-item" data-tool="hand" onclick="setTool('hand')">
+          <div class="dot dot--hand"></div>
+          <span class="legend-label">Chwyt</span>
+          <span class="legend-key">3</span>
+        </div>
+
+        <div class="legend-item" data-tool="top" onclick="setTool('top')">
+          <div class="dot dot--top"></div>
+          <span class="legend-label">Top</span>
+          <span class="legend-key">4</span>
+        </div>
+
+        <div class="legend-item legend-item--separator" data-tool="clear" onclick="setTool('clear')">
+          <div class="dot dot--clear"></div>
+          <span class="legend-label">Usuń</span>
+          <span class="legend-key">X</span>
+        </div>
+      </div>
+
+      <!-- Route stats -->
+      <div class="panel">
+        <div class="panel-title">Droga</div>
+
+        <div class="stat-row">
+          <span class="stat-label">Start</span>
+          <span class="stat-value" id="countStart">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Nogi</span>
+          <span class="stat-value" id="countFoot">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Chwyty</span>
+          <span class="stat-value" id="countHand">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Top</span>
+          <span class="stat-value" id="countTop">0</span>
+        </div>
+
+        <div class="validation-msg" id="validationMsg">Dodaj chwyt startowy</div>
+      </div>
+
+      <button class="btn btn--primary" id="predictBtn" onclick="predict()" disabled>
+        Oceń trudność
+      </button>
+
+      <button class="btn btn--ghost" onclick="resetRoute()">
+        Reset drogi
+      </button>
+
+      <!-- Debug: tensor payload -->
+      <div class="panel" id="tensorPanel" style="display:none">
+        <div class="panel-title">Tensor JSON</div>
+        <div class="tensor-output" id="tensorOutput"></div>
+      </div>
+
+    </aside>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
